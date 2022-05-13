@@ -1,0 +1,132 @@
+#include "teseo_liv3f_class.h"
+#include "LoRaWAN.h"
+#include "TimerMillis.h"
+#include <CayenneLPP.h>
+
+const char *devEui = "6081F9D499665A68";
+const char *appEui = "6081F99CD641F555";
+const char *appKey = "78E6CA47EF943377E4D6FF293DD149F7";
+
+int GLOBAL_COUNTER;
+int SEND_PACKET_INTERVAL;
+TimerMillis transmitTimer;
+TeseoLIV3F* gps;
+GNSSParser_Data_t data;
+CayenneLPP lpp(51);
+
+#ifdef ARDUINO_ARCH_STM32
+HardwareSerial Serial1(PA10, PA9);
+#endif
+
+#if defined(ARDUINO_SAM_DUE)
+#include <avr/dtostrf.h>
+#elif defined(ARDUINO_ARCH_STM32L0)
+#include <avr/dtostrf.h>
+#endif
+
+void call_back_join(void) {
+    if (LoRaWAN.joined()) {
+        Serial.println("Joined");
+        transmitTimer.start(call_back_transmit, 0, SEND_PACKET_INTERVAL);
+    } else {
+        Serial.println("rejoin begin - call back join");
+        LoRaWAN.rejoinOTAA();
+    }
+}
+
+void call_back_receive(void) {
+    //nothing to receive
+}
+
+void call_back_transmit(void) {
+    GLOBAL_COUNTER++;
+
+    if (!LoRaWAN.busy()) {
+        if (!LoRaWAN.linkGateways()) {
+            transmitTimer.stop();
+            Serial.println("rejoin begin - call back transmit");
+            LoRaWAN.rejoinOTAA();
+        }
+        
+        if (LoRaWAN.joined()) {
+            Serial.print("TRANSMIT( ");
+            Serial.print("TimeOnAir: ");
+            Serial.print(LoRaWAN.getTimeOnAir());
+            Serial.print("dbm, UpLinkCounter: ");
+            Serial.print(LoRaWAN.getUpLinkCounter());
+            Serial.print(", DownLinkCounter: ");
+            Serial.print(LoRaWAN.getDownLinkCounter());
+            Serial.println(" )");
+            
+            data = gps->getData();
+
+            if (data.gpgga_data.valid == 1) {
+                float  lat = (float ) (data.gpgga_data.xyz.lat/100.0);
+                float  lon = (float ) (data.gpgga_data.xyz.lon/100.0);
+                lpp.reset();
+                lpp.addGPS(1, lat, lon, 2);
+                /*
+                Serial.println(" ");
+                Serial.print("Current location, LAT: ");
+                Serial.print(lat);
+                Serial.print("LON: ");
+                Serial.println(lon);
+                */
+                
+                /*
+                LoRaWAN.beginPacket();
+                LoRaWAN.write(0xef);
+                LoRaWAN.write(0xbe);
+                LoRaWAN.write(0xad);
+                LoRaWAN.write(0xde);
+                LoRaWAN.endPacket();
+                */
+                
+                LoRaWAN.sendPacket(1, lpp.getBuffer(), lpp.getSize(), false);
+                /* Reproduce Table
+                LoRaWAN.sendPacket(1, lpp.getBuffer(), lpp.getSize(), true);
+                while (LoRaWAN.busy()) {
+                }
+                
+                if (LoRaWAN.confirmed()) {
+                    Serial.println("ACK received");
+                } else {
+                    Serial.println("NACK");
+                }
+                */
+            } else {
+                Serial.println("GPS location not valid");
+            }
+        }
+    }
+}
+
+void setup(void) {
+    //Serial - User
+    //Serial - device
+    Serial.begin(115200);
+    Serial1.begin(9600);
+    Serial.println("Setup begin");
+    
+    gps = new TeseoLIV3F(&Serial1, 7, 13);
+    gps->init();
+
+    LoRaWAN.begin(US915);
+
+    GLOBAL_COUNTER = 0;
+    SEND_PACKET_INTERVAL = 2000;
+
+    LoRaWAN.onJoin(call_back_join);
+    LoRaWAN.onTransmit(call_back_receive);
+    LoRaWAN.onReceive(call_back_transmit);
+    LoRaWAN.joinOTAA(appEui, appKey, devEui);
+
+    Serial.println("Setup finish");
+}
+
+void loop(void) {
+    //set up a timer to call TRANMIT function
+    //loop will handle GPS update, at lease 20 times per second
+    gps->update();
+    //delay(100);
+}
