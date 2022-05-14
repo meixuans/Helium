@@ -1,0 +1,55 @@
+#include "teseo_liv3f_class.h"
+#include "LoRaWAN.h"
+#include "TimerMillis.h"
+#include <CayenneLPP.h>
+
+const char *devEui = "6081F9D499665A68";
+const char *appEui = "6081F99CD641F555";
+const char *appKey = "78E6CA47EF943377E4D6FF293DD149F7";
+
+int CHECK_GPS_INTERVAL;
+TimerMillis GPSTimer;
+TeseoLIV3F* gps;
+GNSSParser_Data_t data;
+
+void call_back_check_GPS(void) {
+    data = gps->getData();
+    if (data.gpgga_data.valid == 1) {
+        float lat = (float) (data.gpgga_data.xyz.lat/100.0);
+        float lon = (float) (data.gpgga_data.xyz.lon/100.0);
+
+        if (data.gpgga_data.xyz.ns > 80) {
+            lat = lat*(-1);
+        }
+
+        if (data.gpgga_data.xyz.ew > 80) {
+            lon = lon*(-1);
+        }
+        Serial.print("Current location, LAT: ");
+        Serial.print(lat);
+        Serial.print("LON: ");
+        Serial.println(lon);
+    } else {
+        Serial.println("Current location unavailable");
+    }
+}
+
+void setup(void) {
+    //Serial - User
+    //Serial - device
+    Serial.begin(115200);
+    Serial1.begin(9600);
+    Serial.println("Setup begin");
+    
+    gps = new TeseoLIV3F(&Serial1, 7, 13);
+    gps->init();
+    CHECK_GPS_INTERVAL = 2000;
+    GPSTimer.start(call_back_check_GPS, 0, CHECK_GPS_INTERVAL);
+    Serial.println("Setup finish");
+}
+
+void loop(void) {
+    //set up a timer to call check function
+    //loop will handle GPS update, at lease 20 times per second
+    gps->update();
+}
