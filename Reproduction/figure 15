@@ -61,15 +61,27 @@ void call_back_transmit(void) {
             data = gps->getData();
 
             if (data.gpgga_data.valid == 1) {
-                float  lat = (float ) (data.gpgga_data.xyz.lat/100.0);
-                float  lon = (float ) (data.gpgga_data.xyz.lon/100.0);
+                int lat_d = (int) (data.gpgga_data.xyz.lat/100.0);
+                int lat_m = (int) (data.gpgga_data.xyz.lat) - (lat_d * 100);
+                int lon_d= (int) (data.gpgga_data.xyz.lon/100.0);
+                int lon_m = (int) (data.gpgga_data.xyz.lon) - (lon_d * 100);
+                
+                int lat_int = (int) (data.gpgga_data.xyz.lat);
+                int lon_int = (int) (data.gpgga_data.xyz.lon);
+                float lat_s = (data.gpgga_data.xyz.lat - lat_int);
+                float lon_s = (data.gpgga_data.xyz.lon - lon_int);
+
+                float lat_f = 1.0*lat_d + lat_m/60.0 + lat_s/60.0;
+                float lon_f = 1.0*lon_d + lon_m/60.0 + lon_s/60.0;
+                
                 if (data.gpgga_data.xyz.ns > 80) {
-                    lat = lat*(-1);
+                    lat_f = lat_f*(-1);
                 }
 
                 if (data.gpgga_data.xyz.ew > 80) {
-                    lon = lon*(-1);
+                    lon_f = lon_f*(-1);
                 }
+                
                 lpp.reset();
                 lpp.addGPS(1, lat, lon, 2);
                 lpp.addPresence(2, GLOBAL_COUNTER);
