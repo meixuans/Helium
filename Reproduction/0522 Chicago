@@ -34,6 +34,13 @@ void setup( void )
     gps = new TeseoLIV3F(&Serial1, 7, 13);
     gps->init();
 
+    data = gps->getData();
+
+    while (data.gpgga_data.valid != 1) {
+        gps->update();
+        data = gps->getData();
+    }
+
     LoRaWAN.begin(US915);
     LoRaWAN.joinOTAA(appEui, appKey, devEui);
 
@@ -46,11 +53,12 @@ void loop( void )
     {
         data = gps->getData();
 
-        if (data.gpgga_data.valid != 1) {
+        if (data.gpgga_data.valid == 1) {
+            gps->update();
             float  lat = (float ) (data.gpgga_data.xyz.lat/100.0);
             float  lon = (float ) (data.gpgga_data.xyz.lon/100.0);
-            //lpp.reset();
-            //lpp.addGPS(1, lat, lon, 2);
+            lpp.reset();
+            lpp.addGPS(1, lat, lon, 2);
             /*
             LoRaWAN.beginPacket();
             LoRaWAN.write(0xef);
