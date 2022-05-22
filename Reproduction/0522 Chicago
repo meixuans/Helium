@@ -1,0 +1,81 @@
+#include "teseo_liv3f_class.h"
+#include "LoRaWAN.h"
+#include "TimerMillis.h"
+#include <CayenneLPP.h>
+
+const char *devEui = "6081F9D499665A68";
+const char *appEui = "6081F99CD641F555";
+const char *appKey = "78E6CA47EF943377E4D6FF293DD149F7";
+
+int SEND_PACKET_INTERVAL;
+TimerMillis transmitTimer;
+TeseoLIV3F* gps;
+GNSSParser_Data_t data;
+CayenneLPP lpp(51);
+
+#ifdef ARDUINO_ARCH_STM32
+HardwareSerial Serial1(PA10, PA9);
+#endif
+
+#if defined(ARDUINO_SAM_DUE)
+#include <avr/dtostrf.h>
+#elif defined(ARDUINO_ARCH_STM32L0)
+#include <avr/dtostrf.h>
+#endif
+
+
+void setup( void )
+{
+
+    Serial.begin(115200);
+    Serial1.begin(9600);
+    Serial.println("Setup begin");
+    
+    gps = new TeseoLIV3F(&Serial1, 7, 13);
+    gps->init();
+
+    LoRaWAN.begin(US915);
+    LoRaWAN.joinOTAA(appEui, appKey, devEui);
+
+    Serial.println("Setup finish");
+}
+
+void loop( void )
+{
+    if (LoRaWAN.joined() && !LoRaWAN.busy())
+    {
+        data = gps->getData();
+
+        if (data.gpgga_data.valid != 1) {
+            float  lat = (float ) (data.gpgga_data.xyz.lat/100.0);
+            float  lon = (float ) (data.gpgga_data.xyz.lon/100.0);
+            //lpp.reset();
+            //lpp.addGPS(1, lat, lon, 2);
+            /*
+            LoRaWAN.beginPacket();
+            LoRaWAN.write(0xef);
+            LoRaWAN.write(0xbe);
+            LoRaWAN.write(0xad);
+            LoRaWAN.write(0xde);
+            LoRaWAN.endPacket(true);
+            */
+            //Reproduce Table
+            LoRaWAN.sendPacket(1, lpp.getBuffer(), lpp.getSize(), true);
+            while (LoRaWAN.busy()) {
+            }
+            
+            if (LoRaWAN.confirmed()) {
+                Serial.println("ACK received");
+            } else {
+                Serial.println("NACK");
+            }
+            
+        } else {
+            gps->update();
+            Serial.println("GPS location not valid");
+        }
+    } else {
+      gps->update();
+      Serial.println("not joined or busy");
+      }
+}
