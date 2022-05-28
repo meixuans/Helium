@@ -1,0 +1,205 @@
+16:42:21.177 -> $$$083302212077001C1F339912Setup finish
+16:43:05.137 -> TRANSMIT( UpLinkCounter: [1], DownLinkCounter: [0])
+16:43:05.137 -> GLOBAL_COUNTER: [1]
+16:43:44.128 -> NACK
+16:43:44.128 -> NACK_COUNTER: [1]
+16:43:44.128 -> TRANSMIT( UpLinkCounter: [2], DownLinkCounter: [0])
+16:43:44.163 -> GLOBAL_COUNTER: [2]
+16:44:22.145 -> NACK
+16:44:22.145 -> NACK_COUNTER: [2]
+16:44:22.145 -> TRANSMIT( UpLinkCounter: [3], DownLinkCounter: [0])
+16:44:22.145 -> GLOBAL_COUNTER: [3]
+16:44:32.608 -> ACK received
+16:44:32.608 -> ACK_COUNTER: [1]
+16:44:32.608 -> TRANSMIT( UpLinkCounter: [4], DownLinkCounter: [3])
+16:44:32.608 -> GLOBAL_COUNTER: [4]
+16:45:14.610 -> NACK
+16:45:14.610 -> NACK_COUNTER: [3]
+16:45:14.610 -> TRANSMIT( UpLinkCounter: [5], DownLinkCounter: [3])
+16:45:14.610 -> GLOBAL_COUNTER: [5]
+16:45:16.034 -> ACK received
+16:45:16.034 -> ACK_COUNTER: [2]
+16:45:16.034 -> TRANSMIT( UpLinkCounter: [6], DownLinkCounter: [4])
+16:45:16.071 -> GLOBAL_COUNTER: [6]
+16:45:22.503 -> ACK received
+16:45:22.503 -> ACK_COUNTER: [3]
+16:45:22.503 -> TRANSMIT( UpLinkCounter: [7], DownLinkCounter: [5])
+16:45:22.503 -> GLOBAL_COUNTER: [7]
+16:45:27.942 -> ACK received
+16:45:27.942 -> ACK_COUNTER: [4]
+16:45:27.942 -> TRANSMIT( UpLinkCounter: [8], DownLinkCounter: [6])
+16:45:27.942 -> GLOBAL_COUNTER: [8]
+16:46:04.946 -> NACK
+16:46:04.946 -> NACK_COUNTER: [4]
+16:46:04.946 -> TRANSMIT( UpLinkCounter: [9], DownLinkCounter: [6])
+16:46:04.946 -> GLOBAL_COUNTER: [9]
+16:46:42.957 -> NACK
+16:46:42.957 -> NACK_COUNTER: [5]
+16:46:42.957 -> TRANSMIT( UpLinkCounter: [10], DownLinkCounter: [6])
+16:46:42.957 -> GLOBAL_COUNTER: [10]
+16:47:18.952 -> NACK
+16:47:18.952 -> NACK_COUNTER: [6]
+16:47:19.007 -> TRANSMIT( UpLinkCounter: [11], DownLinkCounter: [6])
+16:47:19.007 -> GLOBAL_COUNTER: [11]
+16:47:59.986 -> NACK
+16:47:59.986 -> NACK_COUNTER: [7]
+16:47:59.986 -> TRANSMIT( UpLinkCounter: [12], DownLinkCounter: [6])
+16:47:59.986 -> GLOBAL_COUNTER: [12]
+16:48:36.989 -> NACK
+16:48:36.989 -> NACK_COUNTER: [8]
+16:48:36.989 -> TRANSMIT( UpLinkCounter: [13], DownLinkCounter: [6])
+16:48:36.989 -> GLOBAL_COUNTER: [13]
+16:49:00.612 -> ACK received
+16:49:00.612 -> ACK_COUNTER: [5]
+16:49:00.612 -> TRANSMIT( UpLinkCounter: [14], DownLinkCounter: [9])
+16:49:00.612 -> GLOBAL_COUNTER: [14]
+16:49:36.620 -> NACK
+16:49:36.620 -> NACK_COUNTER: [9]
+16:49:36.620 -> TRANSMIT( UpLinkCounter: [15], DownLinkCounter: [9])
+16:49:36.620 -> GLOBAL_COUNTER: [15]
+16:49:39.232 -> ACK received
+16:49:39.232 -> ACK_COUNTER: [6]
+16:49:39.232 -> TRANSMIT( UpLinkCounter: [16], DownLinkCounter: [10])
+16:49:39.232 -> GLOBAL_COUNTER: [16]
+16:49:45.802 -> ACK received
+16:49:45.802 -> ACK_COUNTER: [7]
+16:49:45.802 -> TRANSMIT( UpLinkCounter: [17], DownLinkCounter: [11])
+16:49:45.872 -> GLOBAL_COUNTER: [17]
+16:49:48.407 -> ACK received
+16:49:48.407 -> ACK_COUNTER: [8]
+16:49:48.407 -> TRANSMIT( UpLinkCounter: [18], DownLinkCounter: [12])
+16:49:48.465 -> GLOBAL_COUNTER: [18]
+16:50:23.425 -> NACK
+16:50:23.425 -> NACK_COUNTER: [10]
+16:50:23.425 -> TRANSMIT( UpLinkCounter: [19], DownLinkCounter: [12])
+16:50:23.425 -> GLOBAL_COUNTER: [19]
+16:50:36.049 -> ACK received
+16:50:36.049 -> ACK_COUNTER: [9]
+16:50:36.049 -> TRANSMIT( UpLinkCounter: [20], DownLinkCounter: [13])
+16:50:36.049 -> GLOBAL_COUNTER: [20]
+16:50:48.630 -> ACK received
+16:50:48.630 -> ACK_COUNTER: [10]
+16:50:48.630 -> TRANSMIT( UpLinkCounter: [21], DownLinkCounter: [14])
+16:50:48.630 -> GLOBAL_COUNTER: [21]
+16:51:10.248 -> ACK received
+16:51:10.248 -> ACK_COUNTER: [11]
+16:51:10.248 -> TRANSMIT( UpLinkCounter: [22], DownLinkCounter: [15])
+16:51:10.248 -> GLOBAL_COUNTER: [22]
+16:51:45.264 -> NACK
+16:51:45.264 -> NACK_COUNTER: [11]
+16:51:45.264 -> TRANSMIT( UpLinkCounter: [23], DownLinkCounter: [15])
+16:51:45.264 -> GLOBAL_COUNTER: [23]
+16:52:22.255 -> NACK
+16:52:22.255 -> NACK_COUNTER: [12]
+16:52:22.255 -> TRANSMIT( UpLinkCounter: [24], DownLinkCounter: [15])
+16:52:22.322 -> GLOBAL_COUNTER: [24]
+16:52:58.293 -> NACK
+16:52:58.293 -> NACK_COUNTER: [13]
+16:52:58.293 -> TRANSMIT( UpLinkCounter: [25], DownLinkCounter: [15])
+16:52:58.293 -> GLOBAL_COUNTER: [25]
+16:53:09.870 -> ACK received
+16:53:09.907 -> ACK_COUNTER: [12]
+16:53:09.907 -> TRANSMIT( UpLinkCounter: [26], DownLinkCounter: [16])
+16:53:09.907 -> GLOBAL_COUNTER: [26]
+16:53:44.886 -> NACK
+16:53:44.944 -> NACK_COUNTER: [14]
+16:53:44.944 -> TRANSMIT( UpLinkCounter: [27], DownLinkCounter: [16])
+16:53:44.944 -> GLOBAL_COUNTER: [27]
+16:53:51.328 -> ACK received
+16:53:51.328 -> ACK_COUNTER: [13]
+16:53:51.328 -> TRANSMIT( UpLinkCounter: [28], DownLinkCounter: [17])
+16:53:51.328 -> GLOBAL_COUNTER: [28]
+16:54:01.729 -> ACK received
+16:54:01.729 -> ACK_COUNTER: [14]
+16:54:01.729 -> TRANSMIT( UpLinkCounter: [29], DownLinkCounter: [18])
+16:54:01.790 -> GLOBAL_COUNTER: [29]
+16:54:19.175 -> ACK received
+16:54:19.175 -> ACK_COUNTER: [15]
+16:54:19.175 -> TRANSMIT( UpLinkCounter: [30], DownLinkCounter: [19])
+16:54:19.175 -> GLOBAL_COUNTER: [30]
+16:54:25.584 -> ACK received
+16:54:25.584 -> ACK_COUNTER: [16]
+16:54:25.584 -> TRANSMIT( UpLinkCounter: [31], DownLinkCounter: [20])
+16:54:25.584 -> GLOBAL_COUNTER: [31]
+16:54:57.006 -> ACK received
+16:54:57.006 -> ACK_COUNTER: [17]
+16:54:57.006 -> TRANSMIT( UpLinkCounter: [32], DownLinkCounter: [22])
+16:54:57.006 -> GLOBAL_COUNTER: [32]
+16:55:36.039 -> NACK
+16:55:36.039 -> NACK_COUNTER: [15]
+16:55:36.039 -> TRANSMIT( UpLinkCounter: [33], DownLinkCounter: [22])
+16:55:36.039 -> GLOBAL_COUNTER: [33]
+16:55:56.466 -> ACK received
+16:55:56.466 -> ACK_COUNTER: [18]
+16:55:56.466 -> TRANSMIT( UpLinkCounter: [34], DownLinkCounter: [23])
+16:55:56.466 -> GLOBAL_COUNTER: [34]
+16:56:32.477 -> NACK
+16:56:32.477 -> NACK_COUNTER: [16]
+16:56:32.477 -> TRANSMIT( UpLinkCounter: [35], DownLinkCounter: [23])
+16:56:32.477 -> GLOBAL_COUNTER: [35]
+16:57:11.460 -> NACK
+16:57:11.460 -> NACK_COUNTER: [17]
+16:57:11.515 -> TRANSMIT( UpLinkCounter: [36], DownLinkCounter: [23])
+16:57:11.515 -> GLOBAL_COUNTER: [36]
+16:57:52.507 -> NACK
+16:57:52.507 -> NACK_COUNTER: [18]
+16:57:52.507 -> TRANSMIT( UpLinkCounter: [37], DownLinkCounter: [23])
+16:57:52.507 -> GLOBAL_COUNTER: [37]
+16:58:24.080 -> ACK received
+16:58:24.119 -> ACK_COUNTER: [19]
+16:58:24.119 -> TRANSMIT( UpLinkCounter: [38], DownLinkCounter: [24])
+16:58:24.119 -> GLOBAL_COUNTER: [38]
+16:58:50.707 -> ACK received
+16:58:50.707 -> ACK_COUNTER: [20]
+16:58:50.707 -> TRANSMIT( UpLinkCounter: [39], DownLinkCounter: [26])
+16:58:50.707 -> GLOBAL_COUNTER: [39]
+16:59:28.713 -> NACK
+16:59:28.713 -> NACK_COUNTER: [19]
+16:59:28.713 -> TRANSMIT( UpLinkCounter: [40], DownLinkCounter: [26])
+16:59:28.713 -> GLOBAL_COUNTER: [40]
+17:00:06.338 -> ACK received
+17:00:06.338 -> ACK_COUNTER: [21]
+17:00:06.338 -> TRANSMIT( UpLinkCounter: [41], DownLinkCounter: [27])
+17:00:06.338 -> GLOBAL_COUNTER: [41]
+17:00:48.326 -> NACK
+17:00:48.326 -> NACK_COUNTER: [20]
+17:00:48.326 -> TRANSMIT( UpLinkCounter: [42], DownLinkCounter: [27])
+17:00:48.389 -> GLOBAL_COUNTER: [42]
+17:01:13.930 -> ACK received
+17:01:13.930 -> ACK_COUNTER: [22]
+17:01:13.930 -> TRANSMIT( UpLinkCounter: [43], DownLinkCounter: [28])
+17:01:13.994 -> GLOBAL_COUNTER: [43]
+17:01:30.371 -> ACK received
+17:01:30.371 -> ACK_COUNTER: [23]
+17:01:30.371 -> TRANSMIT( UpLinkCounter: [44], DownLinkCounter: [29])
+17:01:30.371 -> GLOBAL_COUNTER: [44]
+17:02:11.394 -> NACK
+17:02:11.394 -> NACK_COUNTER: [21]
+17:02:11.394 -> TRANSMIT( UpLinkCounter: [45], DownLinkCounter: [29])
+17:02:11.394 -> GLOBAL_COUNTER: [45]
+17:02:12.816 -> ACK received
+17:02:12.816 -> ACK_COUNTER: [24]
+17:02:12.816 -> TRANSMIT( UpLinkCounter: [46], DownLinkCounter: [31])
+17:02:12.816 -> GLOBAL_COUNTER: [46]
+17:02:46.210 -> ACK received
+17:02:46.210 -> ACK_COUNTER: [25]
+17:02:46.273 -> TRANSMIT( UpLinkCounter: [47], DownLinkCounter: [32])
+17:02:46.273 -> GLOBAL_COUNTER: [47]
+17:03:24.261 -> NACK
+17:03:24.261 -> NACK_COUNTER: [22]
+17:03:24.261 -> TRANSMIT( UpLinkCounter: [48], DownLinkCounter: [32])
+17:03:24.261 -> GLOBAL_COUNTER: [48]
+17:04:04.266 -> NACK
+17:04:04.266 -> NACK_COUNTER: [23]
+17:04:04.266 -> TRANSMIT( UpLinkCounter: [49], DownLinkCounter: [32])
+17:04:04.266 -> GLOBAL_COUNTER: [49]
+17:04:11.863 -> ACK received
+17:04:11.863 -> ACK_COUNTER: [26]
+17:04:11.863 -> TRANSMIT( UpLinkCounter: [50], DownLinkCounter: [34])
+17:04:11.863 -> GLOBAL_COUNTER: [50]
+17:04:24.263 -> ACK received
+17:04:24.263 -> ACK_COUNTER: [27]
+17:04:24.326 -> TRANSMIT( UpLinkCounter: [51], DownLinkCounter: [35])
+17:04:24.326 -> GLOBAL_COUNTER: [51]
+17:04:44.714 -> NACK
+17:04:44.714 -> NACK_COUNTER: [24]
