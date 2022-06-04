@@ -41,7 +41,7 @@ def green_dots_with_gps() -> None:
 
 #Parse GPS & time data from phone
 def Phone_GPS_Parser():
-    GPXfile = 'lllast.gpx'
+    GPXfile = 'now.gpx'
     data = open(GPXfile).read()
     lat = np.array(re.findall(r'lat="([^"]+)', data), dtype=float)
     lon = np.array(re.findall(r'lon="([^"]+)', data), dtype=float)
@@ -54,31 +54,21 @@ def Phone_GPS_Parser():
 
 # Parse Seq & time data from Helium Console
 def Helium_Console_Parser():
-    f = open('event-debug.json')
-    data = json.load(f)
-    list1 = []; list2 = []
-    for ta in data:
-        if ta["category"] == "uplink" and \
-                "data" in ta and "integration" in ta["data"] and ta["data"]["integration"]["status"] == "success" and \
-                "res" in ta["data"] and "headers" in ta["data"]["res"] and "Date" in ta["data"]["res"]["headers"]:\
-            # Convert to CDT
-            utc_date = datetime.strptime(ta["data"]["res"]["headers"]["Date"], '%a, %d %b %Y %H:%M:%S GMT').replace(tzinfo=timezone.utc)
-            list1.append(utc_date.astimezone(pytz.timezone('US/Central')))
-    for da in data:
-        if da["category"] == "uplink" and \
-                "data" in da and "integration" in da["data"] and da["data"]["integration"]["status"] == "success" and \
-                "req" in da["data"] and "body" in da["data"]["req"]:
-            if da["data"]["req"]["body"]["fcnt"] != 0:
-                list2.append(da["data"]["req"]["body"]["fcnt"])
-    list_end = []
-    if len(list1) != len(list2):
-        print("Inconsistency error")
-        f.close()
-        return []
-    for i in range(0, len(list1) - 1):
-        list_end.append([list2[i], list1[i]])
-    f.close()
-    return list_end
+    filePath = "%s.csv" % ("1434-1543")
+    sequenceNumberWithTimeList = []
+
+    with open(filePath, newline='') as csvfile:
+        data = csv.reader(csvfile, delimiter=',')
+        for row in data:
+            if row[5] == "motion":
+                utc_date = datetime.strptime(row[0], '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=timezone.utc)
+                temp_date = utc_date.astimezone(pytz.timezone('US/Central'))
+                tuple = (row[7], temp_date) #seq, time
+                if sequenceNumberWithTimeList[-1][-1] == row[7]:
+                    continue
+                sequenceNumberWithTimeList.append(tuple)
+    csvfile.close()
+    return sequenceNumberWithTimeList
 
 #Generate [geolocation, time] data for visualization
 def Helium_consolidator() -> None:
@@ -97,7 +87,7 @@ def Helium_consolidator() -> None:
                 return_list.append([timer[0], timer[1], consoler[1], "green"]) #now it's all green
                 break
     header = ['lati', 'longi', 'time', 'color']
-    with open('5-24-walk.csv', 'w', encoding='UTF8', newline='') as f:
+    with open('5-28-morning.csv', 'w', encoding='UTF8', newline='') as f:
         writer = csv.writer(f)
         # write the header
         writer.writerow(header)
@@ -106,7 +96,7 @@ def Helium_consolidator() -> None:
             writer.writerow(i)
 
 def trial() -> None: # Play with time for some familarity
-    date = '2022-05-24T20:50:47Z'
+    date = '2022-05-27T19:02:21Z'
     utc_date = datetime.strptime(date, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=timezone.utc)
     london_date = utc_date.astimezone(pytz.timezone('US/Central'))
     print(london_date)
@@ -127,3 +117,4 @@ if __name__ == "__main__":
    #green_dots_with_gps()
    #Phone_GPS_Parser()
    Helium_consolidator()
+   #trial()
